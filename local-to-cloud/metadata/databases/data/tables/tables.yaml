@@ -1,0 +1,3 @@
+- "!include public_orders.yaml"
+- "!include public_products.yaml"
+- "!include public_users.yaml"
