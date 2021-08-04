@@ -2,6 +2,13 @@
 
 Hasura's github integration automatically deploys your github projects using Hasura Cloud, providing automatic updates of your metadata and database migrations from your repo.
 
+## Table of contents
+
+- [Moving from local dev to Hasura Cloud](#moving-from-local-dev-to-hasura-cloud)
+- [Moving from Hasura Cloud to local dev](#moving-from-hasura-cloud-to-local-dev)
+- [Moving between two Hasura Cloud instances](#moving-between-two-hasura-cloud-instances)
+- [Troubleshooting](#troubleshooting)
+
 ## Moving from local dev to Hasura Cloud
 
 Let's say you started developing your app using the OSS version of `hasura/graphql-engine` image locally using docker. Now you want to apply the changes to the Hasura Cloud project. The first step is to create a Hasura Cloud project.
@@ -118,3 +125,7 @@ Once the database ENV is added, the next step is to identify other ENV variables
 Once that is done, we can head to configuring `Git Deployment` for the project. The steps are outlined above.
 
 In the second case of starting with a Cloud project, we have to initialise the hasura project locally and follow the Git Deployment setup.
+
+## Troubleshooting
+
+In case a deployment fails, you can fix the corresponding issues in metadata/migration files with another git push. Learn more different steps to identify and fix issues from the [troubleshooting guide](https://hasura.io/docs/latest/graphql/cloud/projects/github-integration.html#troubleshooting-failures) on docs.
