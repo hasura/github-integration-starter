@@ -83,15 +83,23 @@ hasura metadata export --endpoint <hasura-project-url> --admin-secret <admin-sec
 
 We have successfully synced our state from Cloud to a local dev environment. As you make changes to the schema and metadata and push it to a dev branch, you should be able to sync those changes to the Cloud project again.
 
-Start local development of the project using the Hasura CLI
+Let's apply the metadata and migrations to our local Hasura project.
+
+```bash
+hasura metadata apply
+hasura migrate apply
+hasura metadata reload
+```
+
+The next step is to configure git deployment on the Cloud project by following the steps above.
+
+Start local development of the project using the Hasura CLI. Before that, ensure that the local Hasura project is using the same ENV variable for the Database connection.
 
 ```bash
 hasura console
 ```
 
 This will use the default localhost endpoint in `config.yaml`. You can now use the console to modify schema and metadata.
-
-The next step is to configure git deployment on the Cloud project by following the steps above.
 
 Thats it! The migrations and metadata changes will be applied automatically. In case you have selected a manual deployment, you can head to Cloud dashboard and choose to manually trigger a deployment.
 
