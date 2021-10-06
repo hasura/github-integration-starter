@@ -77,7 +77,7 @@ cd migrations/default
 Note down the directory name, which would look something like this `1627564572630_init`. Just copy the version number without the `_init` parts of the name.
 
 ```bash
-hasura migrate apply --endpoint <hasura-project-url> --admin-secret <admin-secret> --version 1627564572630 --skip-execution
+hasura migrate apply --endpoint <hasura-project-url> --admin-secret <admin-secret> --skip-execution --version 1627564572630
 ```
 
 It is important to add the `skip-execution` flag since that marks the migration as applied. This is to ensure that the schema that is already created on Hasura Cloud project is not getting applied again, which would end in an error state.
