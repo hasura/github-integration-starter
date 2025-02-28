@@ -21,7 +21,7 @@ Once a project is created, we will launch console and Connect a Database. Depend
 
 Once a database is connected, we can configure Git Deployment.
 
-### Configure git deployment
+### Configure Git Deployment
 
 Head to [https://cloud.hasura.io](https://cloud.hasura.io), select the cloud project and go to `Git Deployment` tab on the navigation menu.
 
@@ -47,6 +47,12 @@ git add .
 git commit -m "added tables"
 git push origin <configured-branch>
 ```
+
+### Use GitHub Action
+
+For production environments, we recommend using [GitHub Actions for Hasura](https://github.com/marketplace/actions/github-action-for-hasura) instead of [GitHub Deployment](https://hasura.io/docs/2.0/cloud-ci-cd/github-integration/).
+
+You can find an example GitHub workflow in the [hasura-ci-migrations.yaml](./.github/workflows/hasura-ci-migrations.yaml) file.
 
 ### Try it out
 
