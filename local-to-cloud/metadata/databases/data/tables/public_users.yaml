@@ -9,3 +9,10 @@ array_relationships:
         table:
           name: orders
           schema: public
+  - name: product_reviews
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: product_reviews
+          schema: public
