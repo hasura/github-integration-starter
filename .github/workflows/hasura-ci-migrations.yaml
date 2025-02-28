@@ -1,0 +1,41 @@
+name: Hasura Migration
+on:
+  push:
+    branches:
+      - master
+jobs:
+  hasura_migration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Apply Hasura Metadata
+        uses: tibotiber/hasura-action@v3.0
+        with:
+          args: metadata apply
+        env:
+          HASURA_ENDPOINT: ${{ secrets.HASURA_ENDPOINT }}
+          HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
+          HASURA_WORKDIR: hasura
+          HASURA_ENGINE_VERSION: v2.6.2
+
+      - name: Apply Hasura Migrations
+        uses: tibotiber/hasura-action@v3.0
+        with:
+          args: migrate apply --all-databases
+        env:
+          HASURA_ENDPOINT: ${{ secrets.HASURA_ENDPOINT }}
+          HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
+          HASURA_WORKDIR: hasura
+          HASURA_ENGINE_VERSION: v2.6.2
+
+      - name: Reload Hasura Metadata
+        uses: tibotiber/hasura-action@v3.0
+        with:
+          args: metadata reload
+        env:
+          HASURA_ENDPOINT: ${{ secrets.HASURA_ENDPOINT }}
+          HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
+          HASURA_WORKDIR: hasura
+          HASURA_ENGINE_VERSION: v2.6.2
