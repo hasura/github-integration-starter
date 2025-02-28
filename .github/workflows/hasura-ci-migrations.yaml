@@ -17,8 +17,7 @@ jobs:
         env:
           HASURA_ENDPOINT: ${{ secrets.HASURA_ENDPOINT }}
           HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
-          HASURA_WORKDIR: hasura
-          HASURA_ENGINE_VERSION: v2.6.2
+          HASURA_WORKDIR: local-to-cloud
 
       - name: Apply Hasura Migrations
         uses: tibotiber/hasura-action@v3.0
@@ -27,8 +26,7 @@ jobs:
         env:
           HASURA_ENDPOINT: ${{ secrets.HASURA_ENDPOINT }}
           HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
-          HASURA_WORKDIR: hasura
-          HASURA_ENGINE_VERSION: v2.6.2
+          HASURA_WORKDIR: local-to-cloud
 
       - name: Reload Hasura Metadata
         uses: tibotiber/hasura-action@v3.0
@@ -37,5 +35,4 @@ jobs:
         env:
           HASURA_ENDPOINT: ${{ secrets.HASURA_ENDPOINT }}
           HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
-          HASURA_WORKDIR: hasura
-          HASURA_ENGINE_VERSION: v2.6.2
+          HASURA_WORKDIR: local-to-cloud
