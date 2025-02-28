@@ -1,0 +1,41 @@
+name: Hasura Migration
+on:
+  push:
+    branches:
+      - master
+jobs:
+  hasura_migration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Apply Hasura Metadata
+        uses: ./.github/actions/hasura-ci-cd
+        # uses: tibotiber/hasura-action@v3.0
+        with:
+          args: metadata apply
+        env:
+          HASURA_ENDPOINT: ${{ secrets.HASURA_ENDPOINT }}
+          HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
+          HASURA_WORKDIR: local-to-cloud
+
+      - name: Apply Hasura Migrations
+        uses: ./.github/actions/hasura-ci-cd
+        # uses: tibotiber/hasura-action@v3.0
+        with:
+          args: migrate apply --all-databases
+        env:
+          HASURA_ENDPOINT: ${{ secrets.HASURA_ENDPOINT }}
+          HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
+          HASURA_WORKDIR: local-to-cloud
+
+      - name: Reload Hasura Metadata
+        uses: ./.github/actions/hasura-ci-cd
+        # uses: tibotiber/hasura-action@v3.0
+        with:
+          args: metadata reload
+        env:
+          HASURA_ENDPOINT: ${{ secrets.HASURA_ENDPOINT }}
+          HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
+          HASURA_WORKDIR: local-to-cloud
