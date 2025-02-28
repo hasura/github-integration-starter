@@ -3,8 +3,8 @@
   configuration:
     connection_info:
       database_url:
-        ## from_env: PG_DATABASE_URL
-        from_env: HEROKU_DATABASE_URL
+        from_env: PG_DATABASE_URL
+        # from_env: HEROKU_DATABASE_URL
       isolation_level: read-committed
       use_prepared_statements: false
   tables: "!include data/tables/tables.yaml"
